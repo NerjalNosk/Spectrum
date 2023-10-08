@@ -45,6 +45,9 @@
     ],
     "cardinal-components": [
       "de.dafuqs.spectrum.cca.SpectrumComponentInitializers"
+    ],
+    "recipe-dump": [
+      "de.dafuqs.spectrum.compat.dumpster.recipes.AnvilCrushingJsonParser"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
