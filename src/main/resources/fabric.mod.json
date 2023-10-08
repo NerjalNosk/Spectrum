@@ -47,7 +47,8 @@
       "de.dafuqs.spectrum.cca.SpectrumComponentInitializers"
     ],
     "recipe-dump": [
-      "de.dafuqs.spectrum.compat.dumpster.recipes.AnvilCrushingJsonParser"
+      "de.dafuqs.spectrum.compat.dumpster.recipes.AnvilCrushingJsonParser",
+      "de.dafuqs.spectrum.compat.dumpster.recipes.CinderhearthJsonParser"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
