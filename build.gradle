@@ -128,6 +128,10 @@ dependencies {
 	// Ears compact by Maya!
 	modCompileOnly ("com.unascribed:ears-api:${project.ears_version}")
 
+	// Dumpster compat
+	// https://modrinth.com/mod/dumpster
+	modCompileOnly ("maven.modrinth:dumpster:${project.dumpster_version}")
+
 	// Soft testing-only dependencies:
 	//modRuntimeOnly 'com.github.DaFuqs:PaginatedAdvancements:1.19-SNAPSHOT'
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/
