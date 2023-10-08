@@ -9,6 +9,26 @@ import java.math.*;
 import java.util.*;
 
 public class NbtHelper {
+	public static JsonElement asJson(NbtElement nbt) {
+		if (nbt == null) {
+			return JsonNull.INSTANCE;
+		}
+		if (nbt instanceof NbtString s) return new JsonPrimitive(s.asString());
+		if (nbt instanceof NbtByte b) return new JsonPrimitive(b.byteValue() == 1);
+		if (nbt instanceof AbstractNbtNumber n) return new JsonPrimitive(n.numberValue());
+		if (nbt instanceof AbstractNbtList<?> l) {
+			JsonArray arr =  new JsonArray();
+			l.stream().map(NbtHelper::asJson).forEach(arr::add);
+			return arr;
+		}
+		if (nbt instanceof NbtCompound c) {
+			JsonObject o = new JsonObject();
+			c.getKeys().forEach(k -> o.add(k, asJson(c.get(k))));
+			return o;
+		}
+		return null;
+	}
+
 	public static Optional<NbtCompound> getNbtCompound(JsonElement json) {
 		if (json == null || json.isJsonNull()) {
 			return Optional.empty();

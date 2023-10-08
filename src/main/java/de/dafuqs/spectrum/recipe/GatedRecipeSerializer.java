@@ -7,7 +7,8 @@ import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 
 public interface GatedRecipeSerializer<T extends Recipe<?>> extends RecipeSerializer<T> {
-	
+	String REQUIRED_ADVANCEMENT_KEY = "required_advancement";
+
 	default String readGroup(JsonObject jsonObject) {
 		return JsonHelper.getString(jsonObject, "group", "");
 	}
@@ -17,8 +18,8 @@ public interface GatedRecipeSerializer<T extends Recipe<?>> extends RecipeSerial
 	}
 	
 	default Identifier readRequiredAdvancementIdentifier(JsonObject jsonObject) {
-		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
-			return new Identifier(JsonHelper.getString(jsonObject, "required_advancement"));
+		if (JsonHelper.hasString(jsonObject, REQUIRED_ADVANCEMENT_KEY)) {
+			return new Identifier(JsonHelper.getString(jsonObject, REQUIRED_ADVANCEMENT_KEY));
 		}
 		return null;
 	}
