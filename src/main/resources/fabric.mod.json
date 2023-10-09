@@ -48,7 +48,8 @@
     ],
     "recipe-dump": [
       "de.dafuqs.spectrum.compat.dumpster.recipes.AnvilCrushingJsonParser",
-      "de.dafuqs.spectrum.compat.dumpster.recipes.CinderhearthJsonParser"
+      "de.dafuqs.spectrum.compat.dumpster.recipes.CinderhearthJsonParser",
+      "de.dafuqs.spectrum.compat.dumpster.recipes.CrystallarieumJsonParser"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
