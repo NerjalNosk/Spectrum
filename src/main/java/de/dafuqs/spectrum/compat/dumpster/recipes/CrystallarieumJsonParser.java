@@ -21,7 +21,7 @@ import net.minecraft.util.registry.Registry;
  * @author Nerjal Nosk
  */
 @TargetRecipeType(CrystallarieumJsonParser.TYPE)
-public class CrystallarieumJsonParser implements GatedRecipeJsonParser {
+public final class CrystallarieumJsonParser implements GatedRecipeJsonParser {
     public static final String TYPE = SpectrumCommon.MOD_ID + ":" + SpectrumRecipeTypes.CRYSTALLARIEUM_ID;
     private CrystallarieumRecipe recipe;
 
