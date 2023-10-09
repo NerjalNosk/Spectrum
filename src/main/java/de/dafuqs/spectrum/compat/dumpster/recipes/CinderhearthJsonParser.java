@@ -31,12 +31,12 @@ public final class CinderhearthJsonParser implements GatedRecipeJsonParser {
     }
 
     @Override
-    public boolean in(Recipe<?> recipe) {
+    public InResult in(Recipe<?> recipe) {
         if (recipe instanceof CinderhearthRecipe c) {
             this.recipe = c;
-            return true;
+            return InResult.SUCCESS;
         }
-        return false;
+        return InResult.FAILURE;
     }
 
     @Override

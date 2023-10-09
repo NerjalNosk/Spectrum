@@ -31,12 +31,12 @@ public final class AnvilCrushingJsonParser implements GatedRecipeJsonParser {
     }
 
     @Override
-    public boolean in(Recipe<?> recipe) {
+    public InResult in(Recipe<?> recipe) {
         if (recipe instanceof AnvilCrushingRecipe a) {
             this.recipe = a;
-            return true;
+            return InResult.SUCCESS;
         }
-        return false;
+        return InResult.FAILURE;
     }
 
     @Override
