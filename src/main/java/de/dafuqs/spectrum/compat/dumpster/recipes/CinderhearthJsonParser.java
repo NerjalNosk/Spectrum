@@ -10,8 +10,13 @@ import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
 import mc.recraftors.dumpster.recipes.TargetRecipeType;
 import net.minecraft.recipe.Recipe;
 
+/**
+ * Implements <a href="https://modrinth.com/mod/dumpster">Dumpster</a>
+ * compat for {@link CinderhearthRecipe}
+ * @author Nerjal Nosk
+ */
 @TargetRecipeType(CinderhearthJsonParser.TYPE)
-public class CinderhearthJsonParser implements GatedRecipeJsonParser {
+public final class CinderhearthJsonParser implements GatedRecipeJsonParser {
     public static final String TYPE = SpectrumCommon.MOD_ID + ":" + SpectrumRecipeTypes.CINDERHEARTH_ID;
     private CinderhearthRecipe recipe;
 
