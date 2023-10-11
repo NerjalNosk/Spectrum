@@ -8,7 +8,7 @@ import java.util.*;
 
 public class WeatherPredicate implements WorldConditionPredicate {
 	public static final WeatherPredicate ANY = new WeatherPredicate(null);
-	
+
 	public enum WeatherCondition {
 		CLEAR_SKY,
 		RAIN, // rain or thunder
@@ -16,18 +16,27 @@ public class WeatherPredicate implements WorldConditionPredicate {
 		THUNDER,
 		NOT_THUNDER
 	}
-	
+
 	public final WeatherCondition weatherCondition;
-	
+
 	public WeatherPredicate(WeatherCondition weatherCondition) {
 		this.weatherCondition = weatherCondition;
 	}
-	
+
 	public static WeatherPredicate fromJson(JsonObject json) {
         if (json == null || json.isJsonNull()) return ANY;
 		return new WeatherPredicate(WeatherCondition.valueOf(json.get("weather_condition").getAsString().toUpperCase(Locale.ROOT)));
 	}
-	
+
+	public static JsonObject toJson(WorldConditionPredicate predicate) {
+		if (! (predicate instanceof WeatherPredicate w) || predicate == ANY) {
+			return null;
+		}
+		JsonObject o = new JsonObject();
+		o.add("weather_condition", new JsonPrimitive(w.weatherCondition.name()));
+		return o;
+	}
+
 	@Override
 	public boolean test(ServerWorld world, BlockPos pos) {
 		if (this == ANY) return true;
@@ -50,5 +59,4 @@ public class WeatherPredicate implements WorldConditionPredicate {
 		}
 		return true;
 	}
-	
 }

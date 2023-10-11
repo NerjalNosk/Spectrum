@@ -26,6 +26,19 @@ public class DimensionPredicate implements WorldConditionPredicate {
 		}
 		return new DimensionPredicate(dimensionKeys);
 	}
+
+	public static JsonObject toJson(WorldConditionPredicate predicate) {
+		if (!(predicate instanceof DimensionPredicate d) || predicate == ANY) {
+			return null;
+		}
+		JsonArray worlds = new JsonArray();
+		for (RegistryKey<World> dim : d.dimensionKeys) {
+			worlds.add(dim.getValue().toString());
+		}
+		JsonObject o = new JsonObject();
+		o.add("worlds", worlds);
+		return o;
+	}
 	
 	@Override
 	public boolean test(ServerWorld world, BlockPos pos) {

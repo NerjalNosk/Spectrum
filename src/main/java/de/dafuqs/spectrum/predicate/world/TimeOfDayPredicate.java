@@ -9,18 +9,27 @@ import java.util.*;
 
 public class TimeOfDayPredicate implements WorldConditionPredicate {
 	public static final TimeOfDayPredicate ANY = new TimeOfDayPredicate(null);
-	
+
 	public final TimeHelper.TimeOfDay timeOfDay;
-	
+
 	public TimeOfDayPredicate(TimeHelper.TimeOfDay timeOfDay) {
 		this.timeOfDay = timeOfDay;
 	}
-	
+
 	public static TimeOfDayPredicate fromJson(JsonObject json) {
         if (json == null || json.isJsonNull()) return ANY;
 		return new TimeOfDayPredicate(TimeHelper.TimeOfDay.valueOf(json.get("time").getAsString().toUpperCase(Locale.ROOT)));
 	}
-	
+
+	public static JsonObject toJson(WorldConditionPredicate predicate) {
+		if (! (predicate instanceof TimeOfDayPredicate t) || predicate == ANY) {
+			return null;
+		}
+		JsonObject o = new JsonObject();
+		o.add("time", new JsonPrimitive(t.timeOfDay.name()));
+		return o;
+	}
+
 	@Override
 	public boolean test(ServerWorld world, BlockPos pos) {
 		if (this == ANY) return true;

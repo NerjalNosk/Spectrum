@@ -9,16 +9,25 @@ import net.minecraft.util.math.*;
 
 public class CommandPredicate implements WorldConditionPredicate, CommandOutput {
 	public static final CommandPredicate ANY = new CommandPredicate(null);
-	
+
 	public final String command;
-	
+
 	public CommandPredicate(String command) {
 		this.command = command;
 	}
-	
+
 	public static CommandPredicate fromJson(JsonObject json) {
         if (json == null || json.isJsonNull()) return ANY;
 		return new CommandPredicate(json.get("command").getAsString());
+	}
+
+	public static JsonObject toJson(WorldConditionPredicate predicate) {
+		if (! (predicate instanceof CommandPredicate c) || predicate == ANY) {
+			return null;
+		}
+		JsonObject o = new JsonObject();
+		o.add("command", new JsonPrimitive(c.command));
+		return o;
 	}
 	
 	@Override
@@ -28,25 +37,23 @@ public class CommandPredicate implements WorldConditionPredicate, CommandOutput 
 		ServerCommandSource serverCommandSource = new ServerCommandSource(this, Vec3d.ofCenter(pos), Vec2f.ZERO, world, 2, "FusionShrine", world.getBlockState(pos).getBlock().getName(), minecraftServer, null);
 		return minecraftServer.getCommandManager().executeWithPrefix(serverCommandSource, command) > 0;
 	}
-	
+
 	@Override
 	public void sendMessage(Text message) {
-	
 	}
 	
 	@Override
 	public boolean shouldReceiveFeedback() {
 		return false;
 	}
-	
+
 	@Override
 	public boolean shouldTrackOutput() {
 		return false;
 	}
-	
+
 	@Override
 	public boolean shouldBroadcastConsoleToOps() {
 		return false;
 	}
-	
 }
