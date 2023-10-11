@@ -20,9 +20,7 @@ public interface GatedRecipeJsonParser extends RecipeJsonParser {
     default JsonObject toJson() {
         JsonObject main = new JsonObject();
         main.add("type", new JsonPrimitive(getType()));
-        if (getRecipe().group != null && !getRecipe().group.isEmpty()) {
-            main.add("group", new JsonPrimitive(getRecipe().group));
-        }
+        RecipeJsonParser.addGroup(main, getRecipe());
         main.add("secret", new JsonPrimitive(getRecipe().secret));
         main.add(GatedRecipeSerializer.REQUIRED_ADVANCEMENT_KEY, new JsonPrimitive(getRecipe().requiredAdvancementIdentifier.toString()));
         return main;
