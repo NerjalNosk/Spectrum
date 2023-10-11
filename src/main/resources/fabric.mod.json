@@ -50,7 +50,9 @@
       "de.dafuqs.spectrum.compat.dumpster.recipes.AnvilCrushingJsonParser",
       "de.dafuqs.spectrum.compat.dumpster.recipes.CinderhearthJsonParser",
       "de.dafuqs.spectrum.compat.dumpster.recipes.CrystallarieumJsonParser",
-      "de.dafuqs.spectrum.compat.dumpster.recipes.EnchanterJsonParser"
+      "de.dafuqs.spectrum.compat.dumpster.recipes.EnchanterJsonParser",
+      "de.dafuqs.spectrum.compat.dumpster.recipes.EnchantmentUpgradeJsonParser",
+      "de.dafuqs.spectrum.compat.dumpster.recipes.FluidConvertingJsonParser"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
