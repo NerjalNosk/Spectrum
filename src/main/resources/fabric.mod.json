@@ -53,7 +53,8 @@
       "de.dafuqs.spectrum.compat.dumpster.recipes.EnchanterJsonParser",
       "de.dafuqs.spectrum.compat.dumpster.recipes.EnchantmentUpgradeJsonParser",
       "de.dafuqs.spectrum.compat.dumpster.recipes.FluidConvertingJsonParser",
-      "de.dafuqs.spectrum.compat.dumpster.recipes.FusionShrineJsonParser"
+      "de.dafuqs.spectrum.compat.dumpster.recipes.FusionShrineJsonParser",
+      "de.dafuqs.spectrum.compat.dumpster.recipes.InkConvertingJsonParser"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
