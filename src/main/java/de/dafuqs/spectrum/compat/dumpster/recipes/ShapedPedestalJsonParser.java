@@ -38,6 +38,7 @@ public final class ShapedPedestalJsonParser implements GatedRecipeJsonParser {
     }
 
     @Override
+    @SuppressWarnings("DuplicatedCode")
     public JsonObject toJson() {
         JsonObject main = GatedRecipeJsonParser.super.toJson();
         main.add("result", GatedRecipeJsonParser.resultObject(this.recipe.getOutput()));

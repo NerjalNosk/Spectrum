@@ -55,7 +55,8 @@
       "de.dafuqs.spectrum.compat.dumpster.recipes.FluidConvertingJsonParser",
       "de.dafuqs.spectrum.compat.dumpster.recipes.FusionShrineJsonParser",
       "de.dafuqs.spectrum.compat.dumpster.recipes.InkConvertingJsonParser",
-      "de.dafuqs.spectrum.compat.dumpster.recipes.ShapedPedestalJsonParser"
+      "de.dafuqs.spectrum.compat.dumpster.recipes.ShapedPedestalJsonParser",
+      "de.dafuqs.spectrum.compat.dumpster.recipes.ShapelessPedestalJsonParser"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
