@@ -20,7 +20,7 @@ import net.minecraft.util.registry.Registry;
         SpectrumCommon.MOD_ID+":"+SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_ID,
         SpectrumCommon.MOD_ID+":"+SpectrumRecipeTypes.MUD_CONVERTING_ID
 })
-public class FluidConvertingJsonParser implements GatedRecipeJsonParser {
+public final class FluidConvertingJsonParser implements GatedRecipeJsonParser {
     public static final String TYPE = SpectrumCommon.MOD_ID + ":fluid_convert";
     private FluidConvertingRecipe recipe;
 

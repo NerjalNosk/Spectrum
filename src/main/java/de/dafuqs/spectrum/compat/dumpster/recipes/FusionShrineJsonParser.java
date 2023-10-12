@@ -19,7 +19,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.List;
 
 @TargetRecipeType(FluidConvertingJsonParser.TYPE)
-public class FusionShrineJsonParser implements GatedRecipeJsonParser {
+public final class FusionShrineJsonParser implements GatedRecipeJsonParser {
     public static final String TYPE = SpectrumCommon.MOD_ID + ":" + SpectrumRecipeTypes.FUSION_SHRINE_ID;
     private FusionShrineRecipe recipe;
 

@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * @author Nerjal Nosk
  */
 @TargetRecipeType(EnchantmentUpgradeJsonParser.TYPE)
-public class EnchantmentUpgradeJsonParser implements GatedRecipeJsonParser {
+public final class EnchantmentUpgradeJsonParser implements GatedRecipeJsonParser {
     public static final String TYPE = SpectrumCommon.MOD_ID + ":" + SpectrumRecipeTypes.ENCHANTMENT_UPGRADE_ID;
     static final Pattern lastInt = Pattern.compile("\\D+(\\D+)$");
     private final Map<Identifier, JsonArray> recipeLevelsMap = new HashMap<>();
