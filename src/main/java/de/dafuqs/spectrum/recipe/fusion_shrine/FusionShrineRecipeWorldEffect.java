@@ -24,13 +24,12 @@ import java.util.*;
  * Effects that are played when crafting with the fusion shrine
  */
 public interface FusionShrineRecipeWorldEffect {
-	
+
 	Map<String, FusionShrineRecipeWorldEffect> TYPES = new HashMap<>();
-	
+
 	FusionShrineRecipeWorldEffect NOTHING = register("nothing", new SingleTimeRecipeWorldEffect() {
 		@Override
 		public void trigger(ServerWorld world, BlockPos pos) {
-			
 		}
 	});
 	FusionShrineRecipeWorldEffect WEATHER_CLEAR = register("weather_clear", new SingleTimeRecipeWorldEffect() {
@@ -51,7 +50,7 @@ public interface FusionShrineRecipeWorldEffect {
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(0);
 			serverWorldProperties.setThundering(false);
-			
+
 			world.playSound(null, pos.up(), SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 		}
 	});
@@ -63,7 +62,7 @@ public interface FusionShrineRecipeWorldEffect {
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3600, 15600));
 			serverWorldProperties.setThundering(true);
-			
+
 			world.playSound(null, pos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 		}
 	});
@@ -75,7 +74,7 @@ public interface FusionShrineRecipeWorldEffect {
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(0);
 			serverWorldProperties.setThundering(false);
-			
+
 			world.playSound(null, pos.up(), SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 		}
 	});
@@ -87,7 +86,7 @@ public interface FusionShrineRecipeWorldEffect {
 			serverWorldProperties.setRaining(true);
 			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3000, 4000));
 			serverWorldProperties.setThundering(true);
-			
+
 			world.playSound(null, pos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 		}
 	});
@@ -108,7 +107,7 @@ public interface FusionShrineRecipeWorldEffect {
 			if (world.getRandom().nextFloat() < 0.05F) {
 				int randomX = pos.getX() + 12 - world.getRandom().nextInt(24);
 				int randomZ = pos.getZ() + 12 - world.getRandom().nextInt(24);
-				
+
 				BlockPos randomTopPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
 				LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
 				if (lightningEntity != null) {
@@ -180,7 +179,7 @@ public interface FusionShrineRecipeWorldEffect {
 			if (world.getRandom().nextFloat() < 0.05F) {
 				int randomX = pos.getX() + 12 - world.getRandom().nextInt(24);
 				int randomZ = pos.getZ() + 12 - world.getRandom().nextInt(24);
-				
+
 				BlockPos randomTopPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
 				LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
 				if (lightningEntity != null) {
@@ -203,12 +202,12 @@ public interface FusionShrineRecipeWorldEffect {
 			world.playSound(null, pos.up(), SpectrumSoundEvents.SQUEAKER, SoundCategory.BLOCKS, 1.4F, 1.2F + world.random.nextFloat() * 0.4F);
 		}
 	});
-	
+
 	static FusionShrineRecipeWorldEffect register(String id, FusionShrineRecipeWorldEffect effect) {
 		TYPES.put(id, effect);
 		return effect;
 	}
-	
+
 	static FusionShrineRecipeWorldEffect fromString(String string) {
 		if (string == null || string.isBlank()) {
 			return NOTHING;
@@ -216,7 +215,7 @@ public interface FusionShrineRecipeWorldEffect {
 		if (string.startsWith("/")) {
 			return new CommandRecipeWorldEffect(string);
 		}
-		
+
 		FusionShrineRecipeWorldEffect effect = TYPES.get(string);
 		if (effect == null) {
 			SpectrumCommon.logError("Unknown fusion shrine world effect '" + string + "'. Will be ignored.");
@@ -224,82 +223,84 @@ public interface FusionShrineRecipeWorldEffect {
 		}
 		return effect;
 	}
-	
+
+	static String toString(FusionShrineRecipeWorldEffect effect) {
+		return TYPES.entrySet().stream().filter(e -> e.getValue() == effect).map(Map.Entry::getKey).findFirst().orElse(null);
+	}
+
 	/**
 	 * True for all effects that should just play once.
 	 * Otherwise, it will be triggered each tick of the recipe
 	 */
 	boolean isOneTimeEffect();
-	
+
 	void trigger(ServerWorld world, BlockPos pos);
-	
+
 	abstract class EveryTickRecipeWorldEffect implements FusionShrineRecipeWorldEffect {
-		
+
 		public EveryTickRecipeWorldEffect() {
 		}
-		
+
 		@Override
 		public boolean isOneTimeEffect() {
 			return false;
 		}
 		
 	}
-	
+
 	abstract class SingleTimeRecipeWorldEffect implements FusionShrineRecipeWorldEffect {
-		
+
 		public SingleTimeRecipeWorldEffect() {
 		}
-		
+
 		@Override
 		public boolean isOneTimeEffect() {
 			return true;
 		}
-		
+
 	}
-	
+
 	class CommandRecipeWorldEffect implements FusionShrineRecipeWorldEffect, CommandOutput {
-		
+
 		protected final String command;
-		
+
 		public CommandRecipeWorldEffect(String command) {
 			this.command = command;
 		}
-		
+
 		public static CommandRecipeWorldEffect fromJson(JsonObject json) {
 			return new CommandRecipeWorldEffect(json.getAsString());
 		}
-		
+
 		@Override
 		public boolean isOneTimeEffect() {
 			return false;
 		}
-		
+
 		@Override
 		public void trigger(ServerWorld world, BlockPos pos) {
 			MinecraftServer minecraftServer = world.getServer();
 			ServerCommandSource serverCommandSource = new ServerCommandSource(this, Vec3d.ofCenter(pos), Vec2f.ZERO, world, 2, "FusionShrine", world.getBlockState(pos).getBlock().getName(), minecraftServer, null);
 			minecraftServer.getCommandManager().executeWithPrefix(serverCommandSource, command);
 		}
-		
+
 		@Override
 		public void sendMessage(Text message) {
-			
 		}
-		
+
 		@Override
 		public boolean shouldReceiveFeedback() {
 			return false;
 		}
-		
+
 		@Override
 		public boolean shouldTrackOutput() {
 			return false;
 		}
-		
+
 		@Override
 		public boolean shouldBroadcastConsoleToOps() {
 			return false;
 		}
 	}
-	
 }
