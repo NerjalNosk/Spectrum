@@ -283,9 +283,32 @@ public class FusionShrineRecipe extends GatedStackSpectrumRecipe {
 		//only triggered on server side. Therefore, has to be sent to client via S2C packet
 		fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(this, intExperience);
 	}
-	
+
+	public FusionShrineRecipeWorldEffect getStartWorldEffect() {
+		return startWorldEffect;
+	}
+
+	public List<FusionShrineRecipeWorldEffect> getDuringWorldEffects() {
+		return List.copyOf(duringWorldEffects);
+	}
+
+	public FusionShrineRecipeWorldEffect getFinishWorldEffect() {
+		return finishWorldEffect;
+	}
+
+	public List<WorldConditionPredicate> getWorldConditions() {
+		return List.copyOf(this.worldConditions);
+	}
+
 	public boolean shouldPlayCraftingFinishedEffects() {
 		return this.playCraftingFinishedEffects;
 	}
-	
+
+	public boolean areYieldUpgradesDisabled() {
+		return this.yieldUpgradesDisabled;
+	}
+
+	public boolean doCopyNbt() {
+		return this.copyNbt;
+	}
 }
