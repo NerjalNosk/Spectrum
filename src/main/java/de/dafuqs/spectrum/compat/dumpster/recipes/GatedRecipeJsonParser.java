@@ -6,6 +6,8 @@ import com.google.gson.JsonPrimitive;
 import de.dafuqs.spectrum.helpers.NbtHelper;
 import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
+import de.dafuqs.spectrum.recipe.pedestal.PedestalRecipe;
+import de.dafuqs.spectrum.recipe.pedestal.color.BuiltinGemstoneColor;
 import mc.recraftors.dumpster.recipes.RecipeJsonParser;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -47,5 +49,13 @@ public interface GatedRecipeJsonParser extends RecipeJsonParser {
             res.add("nbt", NbtHelper.asJson(stack.getNbt()));
         }
         return res;
+    }
+
+    static void addGemstonePowderInputs(JsonObject object, PedestalRecipe recipe) {
+        object.add("cyan", new JsonPrimitive(recipe.getGemstonePowderAmount(BuiltinGemstoneColor.CYAN)));
+        object.add("magenta", new JsonPrimitive(recipe.getGemstonePowderAmount(BuiltinGemstoneColor.MAGENTA)));
+        object.add("yellow", new JsonPrimitive(recipe.getGemstonePowderAmount(BuiltinGemstoneColor.YELLOW)));
+        object.add("black", new JsonPrimitive(recipe.getGemstonePowderAmount(BuiltinGemstoneColor.BLACK)));
+        object.add("white", new JsonPrimitive(recipe.getGemstonePowderAmount(BuiltinGemstoneColor.WHITE)));
     }
 }
