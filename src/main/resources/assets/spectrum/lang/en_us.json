@@ -378,7 +378,7 @@
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
 
   "enchantment.spectrum.resonance": "Resonance",
-  "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to drop themselves",
+  "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to either drop themselves or preserve special properties",
   "enchantment.spectrum.pest_control": "Pest Control",
   "enchantment.spectrum.pest_control.desc": "Get's rid of Silverfish when breaking infected Blocks",
   "enchantment.spectrum.autosmelt": "Foundry",
@@ -2808,7 +2808,7 @@
   "tag.c.grain": "Grains",
   "tag.c.grains": "Grains",
   "tag.c.jellies": "Jellies",
-  "tag.c.tea_leaves": "Lea Leaves",
+  "tag.c.tea_leaves": "Tea Leaves",
   "tag.c.topaz": "Topaz",
   "tag.c.topaz_blocks": "Topaz Blocks",
   "tag.c.topaz_dusts": "Topaz Dusts",

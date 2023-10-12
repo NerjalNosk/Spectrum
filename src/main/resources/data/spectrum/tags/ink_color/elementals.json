@@ -2,6 +2,8 @@
   "values": [
     "spectrum:cyan",
     "spectrum:magenta",
-    "spectrum:yellow"
+    "spectrum:yellow",
+    "spectrum:black",
+    "spectrum:white"
   ]
 }
